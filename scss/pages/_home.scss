@@ -40,7 +40,7 @@ html {
   font-family: 'Poppins', sans-serif;
   background: var(--greyLight-1);
   @include media-breakpoint-down(lg) {
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
 }
 
