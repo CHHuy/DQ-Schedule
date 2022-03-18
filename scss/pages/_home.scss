@@ -40,7 +40,7 @@ html {
   font-family: 'Poppins', sans-serif;
   background: var(--greyLight-1);
   @include media-breakpoint-down(lg) {
-    padding: 0 1rem;
+    padding: 1rem 1rem;
   }
 }
 
@@ -87,6 +87,7 @@ html {
   }
   @include media-breakpoint-down(md){
     @include flex-direction(column);
+    @include justify-content(center);
   }
 }
 

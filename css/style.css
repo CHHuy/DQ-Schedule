@@ -11196,7 +11196,7 @@ html {
 }
 @media (max-width: 991.98px) {
   .container-custom {
-    padding: 0 1rem;
+    padding: 1rem 1rem;
   }
 }
 
@@ -11262,6 +11262,11 @@ html {
     -moz-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center;
   }
 }
 
