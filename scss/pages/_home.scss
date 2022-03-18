@@ -23,7 +23,7 @@ inset -.2rem -.2rem .5rem var(--white);
 
 html {
   box-sizing: border-box;
-  font-size: 90%; // 1rem = 10px    100% = 16px
+  font-size: 95%; // 1rem = 10px    100% = 16px
   overflow-y: scroll;
   background: var(--greyLight-1);
 
@@ -81,7 +81,9 @@ html {
     @include justify-content(center);
     color: #5b0eeb;
     margin: 2rem 0;
-    p{margin: 0;}
+    p{margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold}
   }
   @include media-breakpoint-down(md){
     @include flex-direction(column);

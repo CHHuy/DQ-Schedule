@@ -11164,7 +11164,7 @@ Footer
 
 html {
   box-sizing: border-box;
-  font-size: 90%;
+  font-size: 95%;
   overflow-y: scroll;
   background: var(--greyLight-1);
 }
@@ -11251,6 +11251,8 @@ html {
 }
 .components .shift p {
   margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 @media (max-width: 767.98px) {
   .components {
