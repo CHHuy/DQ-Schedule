@@ -73,8 +73,7 @@ if (Modernizr.touch === true && window.innerWidth <= 767) {
 
         let startDate = new Date(new Date().getFullYear(), 0, 1)
 
-        const listCD = ['Hoàng Huy', 'Đăng Quang', 'Tấn Phát', 'Hoàng Tuấn']
-        // const listTT = ['Ân', 'Bình', 'Khôi', 'Khiêm', 'Bảo', 'QAnh']
+        const listCD = ['Hoàng Huy', 'Đăng Quang', 'Tấn Phát']
         var index = 0
         var todayToCompare = new Date(
             today.getMonth() + 1 + '/' + today.getDate() + '/' + today.getFullYear()
@@ -94,9 +93,6 @@ if (Modernizr.touch === true && window.innerWidth <= 767) {
         console.log(dateString + ' Đồng Chí ' + CD)
         document.getElementById('shiftCD').innerHTML =
             'Trực ngày ' + dateString + ', ' + CD
-        var TT = listCD[index % listCD.length]
-/*        document.getElementById('shiftTT').innerHTML =
-            'Trực ngày ' + dateString + ', ' + TT*/
     }
 
     /*  clock */
