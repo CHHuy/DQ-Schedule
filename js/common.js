@@ -42,7 +42,7 @@ if (Modernizr.touch === true && window.innerWidth <= 767) {
 
     // ngày 1/1/2022 00:00:00;
     let startDate = new Date(new Date().getFullYear(), 0, 1)
-    const listCD = ['Hoàng Huy', 'Đăng Quang', 'Tấn Phát', 'Trọng Ân']
+    const listCD = ['Tấn Phát', 'Trọng Ân', 'Hoàng Huy', 'Đăng Quang', ]
     let index = 3
 
     // ngày hôm nay nè
