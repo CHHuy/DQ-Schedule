@@ -6,139 +6,114 @@
  -----------------------------------------------------------------------------------*/
 
 if (Modernizr.touch === true && window.innerWidth <= 767) {
-    //alert('Touch Screen');
+  //alert('Touch Screen');
 } else {
 }
 
 ;(function () {
-    ;('use strict')
+  ;('use strict')
 
-    /* ==================================================
-    # Get scroll bar width
-    ===================================================*/
-    function getBarwidth() {
-        // Create the measurement node
-        let scrollDiv = document.createElement('div')
-        scrollDiv.className = 'scrollbar-measure'
-        document.body.appendChild(scrollDiv)
+  /* ==================================================
+  # Get scroll bar width
+  ===================================================*/
+  function getBarwidth() {
+    // Create the measurement node
+    let scrollDiv = document.createElement('div')
+    scrollDiv.className = 'scrollbar-measure'
+    document.body.appendChild(scrollDiv)
 
-        // Get the scrollbar width
-        let scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth
-        //console.warn(scrollbarWidth); // Mac:  15
+    // Get the scrollbar width
+    let scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth
+    //console.warn(scrollbarWidth); // Mac:  15
 
-        // Delete the DIV
-        document.body.removeChild(scrollDiv)
-        // console.log(scrollbarWidth);
-        return scrollbarWidth
+    // Delete the DIV
+    document.body.removeChild(scrollDiv)
+    // console.log(scrollbarWidth);
+    return scrollbarWidth
+  }
+
+
+  function shift() {
+    let today = new Date()
+
+    function formatString(str) {
+      return str < 10 ? '0' + str : str
     }
 
-    /*  function shift() {
-      let today = new Date()
-      let start = new Date('01/01/2022')
-      let end = new Date('12/31/2022')
-      let id = 0
-      const listCD = ['HH', 'PH', 'Q', 'P', 'T']
+    // ngày 1/1/2022 00:00:00;
+    let startDate = new Date(new Date().getFullYear(), 0, 1)
+    const listCD = ['Hoàng Huy', 'Đăng Quang', 'Tấn Phát', 'Trọng Ân']
+    let index = 3
 
-      while (start <= end) {
-        console.log(start)
-        //name
-        let name = listCD[id]
+    // ngày hôm nay nè
+    let todayToCompare = new Date(
+      today.getMonth() + 1 + '/' + today.getDate() + '/' + today.getFullYear()
+    )
 
-        if ((today = start)) {
-          document.getElementById('shiftCD').innerHTML = name
-        }
+    // so sánh thời gian nếu ngày hôm nay lớn hơn ngày đầu của năm thì array dân quân +1 và set startDate là ngày mai (đk luôn đúng)
+    while (startDate.getTime() < todayToCompare.getTime()) {
+      index++
+      startDate.setDate(startDate.getDate() + 1)
+    }
 
-        console.log(name)
+    function isWeekend(date = new Date()) {
+      return date.getDay() === 6 || date.getDay() === 0;
+    }
 
-        id++
+    const shiftSection = document.getElementById('shiftSection');
 
-        //reset id
-        if (id == listCD.length) {
-          id = 0
-        }
+    for (let i = 0; i < 7; i++) {
+      let div = document.createElement("p");
+      div.className = "shiftCD";
 
-        // cộng thêm ngày
-        let newDate = start.setDate(start.getDate() + 1)
-        // set ngày mới vào start
-        start = new Date(newDate)
+      let date = new Date(`${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate() + i}`);
+
+      let CD = listCD[i % listCD.length]
+
+      if (isWeekend(date)) {
+        div.innerHTML = (date.toLocaleDateString() + ' - ' + ' Hoàng Tuấn')
+        div.style.color = "#ff7e38";
+      } else {
+        div.innerHTML = (date.toLocaleDateString() + ' - ' + CD)
       }
-    } */
-
-    function shift() {
-        let today = new Date()
-
-        function formatString(str) {
-            return str < 10 ? '0' + str : str
-        }
-
-        // ngày 1/1/2022 00:00:00;
-        let startDate = new Date(new Date().getFullYear(), 0, 1)
-        console.log(startDate);
-
-        const listCD = ['Hoàng Huy', 'Đăng Quang', 'Tấn Phát', 'Trọng Ân']
-
-        let index = 3
-
-        // ngày hôm nay nè
-        let todayToCompare = new Date(
-            today.getMonth() + 1 + '/' + today.getDate() + '/' + today.getFullYear()
-        )
-
-        // so sánh thời gian nếu ngày hôm nay lớn hơn ngày đầu của năm thì array dân quân +1 và set startDate là ngày mai (đk luôn đúng)
-        while (startDate.getTime() < todayToCompare.getTime()) {
-            index++
-            startDate.setDate(startDate.getDate() + 1)
-        }
-
-        let dateString =
-            formatString(startDate.getDate()) +
-            '/' +
-            formatString(startDate.getMonth() + 1) +
-            '/' +
-            startDate.getFullYear()
-
-        let CD = listCD[index % listCD.length]
-
-        console.log(dateString + ' Đồng Chí ' + CD)
-
-        document.getElementById('shiftCD').innerHTML =
-            'Trực ngày ' + dateString + ', ' + CD
+      shiftSection.appendChild(div);
     }
+  }
 
 
-    /*  clock */
-    const hours = document.querySelector('.hours')
-    const minutes = document.querySelector('.minutes')
-    const seconds = document.querySelector('.seconds')
-    let clock = () => {
-        let today = new Date()
-        let h = (today.getHours() % 12) + today.getMinutes() / 59 // 22 % 12 = 10pm
-        let m = today.getMinutes() // 0 - 59
-        let s = today.getSeconds() // 0 - 59
+  /*  clock */
+  const hours = document.querySelector('.hours')
+  const minutes = document.querySelector('.minutes')
+  const seconds = document.querySelector('.seconds')
+  let clock = () => {
+    let today = new Date()
+    let h = (today.getHours() % 12) + today.getMinutes() / 59 // 22 % 12 = 10pm
+    let m = today.getMinutes() // 0 - 59
+    let s = today.getSeconds() // 0 - 59
 
-        h *= 30 // 12 * 30 = 360deg
-        m *= 6
-        s *= 6 // 60 * 6 = 360deg
+    h *= 30 // 12 * 30 = 360deg
+    m *= 6
+    s *= 6 // 60 * 6 = 360deg
 
-        rotation(hours, h)
-        rotation(minutes, m)
-        rotation(seconds, s)
+    rotation(hours, h)
+    rotation(minutes, m)
+    rotation(seconds, s)
 
-        // call every second
-        setTimeout(clock, 500)
-    }
+    // call every second
+    setTimeout(clock, 500)
+  }
 
-    let rotation = (target, val) => {
-        target.style.transform = `rotate(${val}deg)`
-    }
+  let rotation = (target, val) => {
+    target.style.transform = `rotate(${val}deg)`
+  }
 
-    function init() {
-        getBarwidth()
-        shift()
-    }
+  function init() {
+    getBarwidth()
+    shift()
+  }
 
-    init()
-    window.onload = function () {
-        clock()
-    }
+  init()
+  window.onload = function () {
+    clock()
+  }
 })()

@@ -11,9 +11,9 @@
 }
 
 $shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2),
-  -0.2rem -0.2rem 0.5rem var(--white);
+-0.2rem -0.2rem 0.5rem var(--white);
 $inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
-  inset -0.2rem -0.2rem 0.5rem var(--white);
+inset -0.2rem -0.2rem 0.5rem var(--white);
 
 *,
 *::before,
@@ -51,21 +51,22 @@ html {
   @include justify-content(space-evenly);
   @include align-items(center);
   width: 75rem;
-  min-height: 90vh;
   border-radius: 3rem;
   box-shadow: 0.8rem 0.8rem 1.4rem var(--greyLight-2),
-    -0.2rem -0.2rem 1.8rem var(--white);
+  -0.2rem -0.2rem 1.8rem var(--white);
   padding: 2rem;
+
   .clock {
   }
 
   .table-information {
     width: 50%;
-    min-height: 300px;
+    min-height: 80vh;
 
     .table {
       color: #5b0eeb;
     }
+
     @include media-breakpoint-down(md) {
       width: unset;
     }
@@ -85,12 +86,19 @@ html {
     @include flex-wrap(wrap);
     color: #5b0eeb;
     margin: 2rem 0;
+    line-height: 1.8;
+
     p {
       margin: 0;
       font-size: 1.2rem;
       font-weight: bold;
     }
+
+    .shiftCD {
+      width: 100%;
+    }
   }
+
   @include media-breakpoint-down(md) {
     @include flex-direction(column);
     @include justify-content(center);
@@ -160,7 +168,7 @@ html {
       height: 60%;
       position: absolute;
       box-shadow: inset 1px 1px 1px var(--greyLight-2),
-        inset -1px -1px 1px var(--white);
+      inset -1px -1px 1px var(--white);
       border-radius: 50%;
       top: 20%;
       left: 20%;
@@ -174,7 +182,7 @@ html {
       position: absolute;
       border-radius: 0.1rem;
       box-shadow: inset 1px 1px 1px var(--greyLight-2),
-        inset -1px -1px 1px var(--white);
+      inset -1px -1px 1px var(--white);
     }
 
     &__1,

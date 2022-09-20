@@ -19092,14 +19092,13 @@ html {
   -moz-align-items: center;
   align-items: center;
   width: 75rem;
-  min-height: 90vh;
   border-radius: 3rem;
   box-shadow: 0.8rem 0.8rem 1.4rem var(--greyLight-2), -0.2rem -0.2rem 1.8rem var(--white);
   padding: 2rem;
 }
 .components .table-information {
   width: 50%;
-  min-height: 300px;
+  min-height: 80vh;
 }
 .components .table-information .table {
   color: #5b0eeb;
@@ -19132,11 +19131,15 @@ html {
   flex-wrap: wrap;
   color: #5b0eeb;
   margin: 2rem 0;
+  line-height: 1.8;
 }
 .components .shift p {
   margin: 0;
   font-size: 1.2rem;
   font-weight: bold;
+}
+.components .shift .shiftCD {
+  width: 100%;
 }
 @media (max-width: 767.98px) {
   .components {
