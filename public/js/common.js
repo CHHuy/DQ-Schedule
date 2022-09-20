@@ -71,10 +71,10 @@ if (Modernizr.touch === true && window.innerWidth <= 767) {
       let CD = listCD[i % listCD.length]
 
       if (isWeekend(date)) {
-        div.innerHTML = (date.toLocaleDateString() + ' - ' + ' Hoàng Tuấn')
+        div.innerHTML = (date.toLocaleDateString("en-US") + ' - ' + ' Hoàng Tuấn')
         div.style.color = "#ff7e38";
       } else {
-        div.innerHTML = (date.toLocaleDateString() + ' - ' + CD)
+        div.innerHTML = (date.toLocaleDateString("en-US") + ' - ' + CD)
       }
       shiftSection.appendChild(div);
     }
