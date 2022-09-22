@@ -10,8 +10,8 @@ if (Modernizr.touch === true && window.innerWidth <= 767) {
 } else {
 }
 
-;(function () {
-  ;('use strict')
+(function () {
+  'use strict'
 
   /* ==================================================
   # Get scroll bar width
@@ -34,52 +34,40 @@ if (Modernizr.touch === true && window.innerWidth <= 767) {
 
 
   function shift() {
-    let today = new Date()
-
-    function formatString(str) {
-      return str < 10 ? '0' + str : str
-    }
-
-    // ngày 1/1/2022 00:00:00;
-    let startDate = new Date(new Date().getFullYear(), 0, 1)
-    const listCD = ['Tấn Phát', 'Trọng Ân', 'Hoàng Huy', 'Đăng Quang', ]
-    let index = 3
-
-    // ngày hôm nay nè
-    let todayToCompare = new Date(
-      today.getMonth() + 1 + '/' + today.getDate() + '/' + today.getFullYear()
-    )
-
-    // so sánh thời gian nếu ngày hôm nay lớn hơn ngày đầu của năm thì array dân quân +1 và set startDate là ngày mai (đk luôn đúng)
-    while (startDate.getTime() < todayToCompare.getTime()) {
-      index++
-      startDate.setDate(startDate.getDate() + 1)
-    }
-
+    let todayMoment = moment().format('M/D/Y');
     function isWeekend(date = new Date()) {
       return date.getDay() === 6 || date.getDay() === 0;
     }
 
-    const shiftSection = document.getElementById('shiftSection');
+    let startDate = moment().startOf('year').format('M/D/Y');
 
-    for (let i = 0; i < 7; i++) {
-      let div = document.createElement("p");
-      div.className = "shiftCD";
+    let firstDOY = new Date(startDate);
+    let today = new Date(todayMoment);
 
-      let date = new Date(`${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate() + i}`);
+    const listCD = ['Hoàng Huy', 'Đăng Quang', 'Tấn Phát', 'Trọng Ân']
+    let index = 3
 
-      let CD = listCD[i % listCD.length]
+    while (firstDOY.getTime() < today.getTime()) {
+      index++
+      firstDOY.setDate(firstDOY.getDate() + 1 )
+    }
+    let dateString =
+      firstDOY.getDate() +
+      '/' +
+      (firstDOY.getMonth() + 1) +
+      '/' +
+      firstDOY.getFullYear();
 
-      if (isWeekend(date)) {
-        div.innerHTML = (date.toLocaleDateString("en-US") + ' - ' + ' Hoàng Tuấn')
-        div.style.color = "#ff7e38";
-      } else {
-        div.innerHTML = (date.toLocaleDateString("en-US") + ' - ' + CD)
-      }
-      shiftSection.appendChild(div);
+    let CD = listCD[index % listCD.length]
+
+    let shiftSection = document.getElementById('shiftCD');
+    if(isWeekend(today)){
+      shiftSection.innerHTML = 'Trực ngày ' + dateString + ', ' + 'Hoàng Tuấn';
+      shiftSection.style.color = "#ff7e38";
+    }else{
+      shiftSection.innerHTML = 'Trực ngày ' + dateString + ', ' + CD;
     }
   }
-
 
   /*  clock */
   const hours = document.querySelector('.hours')
@@ -116,4 +104,5 @@ if (Modernizr.touch === true && window.innerWidth <= 767) {
   window.onload = function () {
     clock()
   }
+
 })()
