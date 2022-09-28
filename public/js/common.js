@@ -35,6 +35,7 @@ if (Modernizr.touch === true && window.innerWidth <= 767) {
 
   function shift() {
     let todayMoment = moment().format('M/D/Y');
+
     function isWeekend(date = new Date()) {
       return date.getDay() === 6 || date.getDay() === 0;
     }
@@ -49,23 +50,49 @@ if (Modernizr.touch === true && window.innerWidth <= 767) {
 
     while (firstDOY.getTime() < today.getTime()) {
       index++
-      firstDOY.setDate(firstDOY.getDate() + 1 )
+      firstDOY.setDate(firstDOY.getDate() + 1)
     }
-    let dateString =
-      firstDOY.getDate() +
-      '/' +
-      (firstDOY.getMonth() + 1) +
-      '/' +
-      firstDOY.getFullYear();
+    /*    let dateString =
+          firstDOY.getDate() +
+          '/' +
+          (firstDOY.getMonth() + 1) +
+          '/' +
+          firstDOY.getFullYear();*/
 
-    let CD = listCD[index % listCD.length]
+    // let CD = listCD[index % listCD.length];
 
-    let shiftSection = document.getElementById('shiftCD');
-    if(isWeekend(today)){
-      shiftSection.innerHTML = 'Trực ngày ' + dateString + ', ' + 'Hoàng Tuấn';
-      shiftSection.style.color = "#ff7e38";
-    }else{
-      shiftSection.innerHTML = 'Trực ngày ' + dateString + ', ' + CD;
+    let CDArray = [];
+
+    for (let i = 0; i <= 7; i++) {
+      CDArray.push(listCD[(index + i) % listCD.length]);
+    }
+    // console.log(CDArray);
+
+
+    /*    let shiftSection = document.getElementById('shiftCD');
+
+        if(isWeekend(today)){
+          shiftSection.innerHTML = 'Trực ngày ' + dateString + ', ' + 'Hoàng Tuấn';
+          shiftSection.style.color = "#ff7e38";
+        }else{
+          shiftSection.innerHTML = 'Trực ngày ' + dateString + ', ' + CD;
+        }*/
+
+    let shiftSection = document.getElementById('shiftSection');
+    for (let i = 0; i <= 7; i++) {
+      let newElement = document.createElement('p');
+      let date = moment().add(i, 'days').format('DD/MM/YYYY');
+
+      let checkDate = new Date(moment().add(i, 'days').format('M/D/Y'));
+
+      newElement.innerHTML = `Trực ngày ${date}, ${CDArray[i]}`;
+
+      if (isWeekend(checkDate)) {
+        newElement.innerHTML = `Trực ngày ${date}, Hoàng Tuấn`;
+        newElement.style.color = "#cf0eeb";
+      }
+
+      shiftSection.append(newElement);
     }
   }
 
