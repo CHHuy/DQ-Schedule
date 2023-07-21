@@ -11,7 +11,7 @@ if (Modernizr.touch === true && window.innerWidth <= 767) {
 }
 
 (function () {
-  'use strict'
+  ;('use strict')
 
   /* ==================================================
   # Get scroll bar width
@@ -32,69 +32,77 @@ if (Modernizr.touch === true && window.innerWidth <= 767) {
     return scrollbarWidth
   }
 
-
   function shift() {
-    let todayMoment = moment().format('M/D/Y');
+    const listCD = [
+      'Hoàng Huy, Đăng Quang',
+      'A2',
+      'Hoàng Tuấn, Thanh Hoàng',
+      'A2',
+      'Quang Long, Thanh Bình',
+      'A2'
+    ]
 
-    function isWeekend(date = new Date()) {
-      return date.getDay() === 6 || date.getDay() === 0;
-    }
+    let todayMoment = moment().format('M/D/Y')
+    let startDate = moment().startOf('year').format('M/D/Y')
 
-    let startDate = moment().startOf('year').format('M/D/Y');
+    let firstDOY = new Date(startDate)
+    let today = new Date(todayMoment)
 
-    let firstDOY = new Date(startDate);
-    let today = new Date(todayMoment);
-
-    const listCD = ['Hoàng Huy', 'Đăng Quang', 'Tấn Phát', 'Trọng Ân']
-    let index = 3
-
+    let index = 5
     while (firstDOY.getTime() < today.getTime()) {
       index++
+      // tăng thêm FDOY + 1 để dừng loop khi nó tăng === ngày hôm nay;
       firstDOY.setDate(firstDOY.getDate() + 1)
     }
-    /*    let dateString =
-          firstDOY.getDate() +
-          '/' +
-          (firstDOY.getMonth() + 1) +
-          '/' +
-          firstDOY.getFullYear();*/
 
-    // let CD = listCD[index % listCD.length];
-
-    let CDArray = [];
-
-    for (let i = 0; i <= 7; i++) {
-      CDArray.push(listCD[(index + i) % listCD.length]);
+    let CDArray = []
+    // cập nhật thứ tự element Array CĐ hằng ngày
+    for (let i = 0; i <= listCD.length; i++) {
+      CDArray.push(listCD[(index + i) % listCD.length])
     }
-    // console.log(CDArray);
 
-
-    /*    let shiftSection = document.getElementById('shiftCD');
-
-        if(isWeekend(today)){
-          shiftSection.innerHTML = 'Trực ngày ' + dateString + ', ' + 'Hoàng Tuấn';
-          shiftSection.style.color = "#ff7e38";
-        }else{
-          shiftSection.innerHTML = 'Trực ngày ' + dateString + ', ' + CD;
-        }*/
-
-    let shiftSection = document.getElementById('shiftSection');
-    for (let i = 0; i <= 7; i++) {
-      let newElement = document.createElement('p');
-      let date = moment().add(i, 'days').format('DD/MM/YYYY');
-
-      let checkDate = new Date(moment().add(i, 'days').format('M/D/Y'));
-
-      newElement.innerHTML = `Trực ngày ${date}, ${CDArray[i]}`;
-
-      if (isWeekend(checkDate)) {
-        newElement.innerHTML = `Trực ngày ${date}, Hoàng Tuấn`;
-        newElement.style.color = "#cf0eeb";
-      }
-
-      shiftSection.append(newElement);
+    let shiftSection = document.getElementById('shiftSection')
+    for (let i = 0; i <= 2; i++) {
+      let newElement = document.createElement('p')
+      let date = moment().add(i, 'days').format('DD/MM/YYYY')
+      newElement.innerHTML = `Trực ngày ${date} - ${CDArray[i]}`
+      shiftSection.append(newElement)
     }
   }
+
+  // function shift() {
+  //   let todayMoment = moment().format('M/D/Y')
+  //   let startDate = moment().startOf('year').format('M/D/Y')
+
+  //   let firstDOY = new Date(startDate)
+  //   let today = new Date(todayMoment)
+
+  //   const listCD = [
+  //     'Hoàng Huy, Đăng Quang',
+  //     'Hoàng Tuấn, Thanh Hoàng',
+  //     'Quang Long, Thanh Bình'
+  //   ]
+  //   let index = 3
+
+  //   while (firstDOY.getTime() < today.getTime()) {
+  //     index++
+  //     firstDOY.setDate(firstDOY.getDate() + 1)
+  //   }
+
+  //   let CDArray = []
+
+  //   for (let i = 0; i <= 7; i++) {
+  //     CDArray.push(listCD[(index + i) % listCD.length])
+  //   }
+
+  //   let shiftSection = document.getElementById('shiftSection')
+  //   for (let i = 0; i <= 7; i++) {
+  //     let newElement = document.createElement('p')
+  //     let date = moment().add(i, 'days').format('DD/MM/YYYY')
+  //     newElement.innerHTML = `Trực ngày ${date}, ${CDArray[i]}`
+  //     shiftSection.append(newElement)
+  //   }
+  // }
 
   /*  clock */
   const hours = document.querySelector('.hours')
@@ -131,5 +139,4 @@ if (Modernizr.touch === true && window.innerWidth <= 767) {
   window.onload = function () {
     clock()
   }
-
 })()
