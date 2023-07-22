@@ -38,7 +38,7 @@ if (Modernizr.touch === true && window.innerWidth <= 767) {
       'A2',
       'Hoàng Tuấn, Thanh Hoàng',
       'A2',
-      'Quang Long, Thanh Bình',
+      'Quảng Long, Thanh Bình',
       'A2'
     ]
 
