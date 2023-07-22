@@ -63,13 +63,11 @@
 
     let shiftSection = document.getElementById('shiftSection')
     for (let i = 0; i <= 4; i++) {
-      if (!(i % 2)) {
         let newElement = document.createElement('p')
         newElement.style.width = "100%"
         let date = moment().add(i, 'days').format('DD/MM/YYYY')
         newElement.innerHTML = "<br>" + `Trực ngày ${date}`+ "<br>" + ` ${CDArray[i]}`;
         shiftSection.append(newElement)
-      }
     }
   }
 
